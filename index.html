@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday My Love!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        @import url('https://drive.google.com/file/d/1JwUGbDsMCTm0clrk6W3szojm6hTrzutR/view?usp=sharing');
         
         body {
             margin: 0;
@@ -13,7 +13,7 @@
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
             color: #333;
-            overflow-x: hidden;
+            overflow: hidden;
             min-height: 100vh;
         }
         
@@ -22,8 +22,10 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease;
         }
         
         #content.show {
@@ -38,7 +40,7 @@
             height: 100%;
             z-index: 100;
             background: black;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease;
         }
         
         #video-container.fade-out {
@@ -63,6 +65,8 @@
             display: block;
             transform: scale(0.95);
             transition: transform 0.5s ease;
+            position: relative;
+            z-index: 2;
         }
         
         .main-photo:hover {
@@ -76,6 +80,8 @@
             margin: 0 0 20px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         
         .message {
@@ -84,6 +90,71 @@
             border-radius: 15px;
             margin: 30px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Heart animation */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6b81;
+            transform: rotate(45deg);
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: #ff6b81;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        /* Balloon animation */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: #ff6b81;
+            border-radius: 50%;
+            animation: floatBalloon 10s ease-in infinite;
+            z-index: 1;
+        }
+        
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: #ccc;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(45deg); }
+            50% { transform: translateY(-50px) rotate(45deg); }
+        }
+        
+        @keyframes floatBalloon {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-100px) translateX(20px); }
         }
         
         @media (max-width: 768px) {
@@ -105,68 +176,114 @@
     
     <!-- Birthday content -->
    <div class="message">
-            <p>DEAR DEDE AA YANG IMUT💙🥰,</p>
+            <p>Sayangnya aa 🥰🥰💙,</p>
             <p>Di hari spesialmu ini, aku ingin mengucapkan selamat ulang tahun untuk wanita paling cantik, kuat, dan mengagumkan yang pernah aku kenal.</p>
-            <p>Setiap hari bersama dede adalah hadiah terindah yang pernah aku terima. dede membuat hidup aa lebih berwarna dengan cintamu, tawamu, dan segala keunikanmu.</p>
-            <p>Aku berjanji akan selalu ada untuk dede hehehe...., dalam suka dan duka, dalam setiap langkah perjalanan hidup kita bersama.</p>
-            <p>Semoga tahun ini membawa lebih banyak kebahagiaan, kesuksesan, dan mimpi yang terwujud untuk dede dan keluarga, amiin..... Aku mencintai dede lebih dari kata-kata bisa ungkapkan.</p>
-            <div class="signature">Dengan cinta aa,<br>Dia yang selalu mencintai dede🥰🥰🥰🥰🥰</div>
+            <p>Setiap hari bersama dede adalah hadiah terindah yang pernah aa terima. dede membuat hidupku lebih berwarna dengan cintamu, tawamu, dan segala keunikanmu.</p>
+            <p>Aku berjanji akan selalu ada untuk dede, dalam suka dan duka, dalam setiap langkah perjalanan hidup kita bersama.</p>
+            <p>Semoga tahun ini membawa lebih banyak kebahagiaan, kesuksesan, dan mimpi yang terwujud untuk dede. Aku mencintaimu lebih dari kata-kata bisa ungkapkan, btw semoga cepat tinggi yah mwehehehehehe #botol yakult🤣❤.</p>
+            <div class="signature">Dengan cinta,<br>Dia yang selalu mencintaimu</div>
         </div>
     </div>
     
     <script>
-        // Get DOM elements
-        const videoContainer = document.getElementById('video-container');
-        const content = document.getElementById('content');
-        const video = document.getElementById('ytVideo');
-        
-        // Create YouTube player API fallback
-        function onYouTubeIframeAPIReady() {
-            new YT.Player('ytVideo', {
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-        
-        // Fallback for when API fails
-        if (typeof YT === 'undefined') {
-            // Simple timeout fallback
-            setTimeout(showContent, 5000);
+        // Create floating elements
+        function createFloatingElements() {
+            const colors = ['#ff6b81', '#ffb8b8', '#d23669', '#ff9a9e'];
             
-            // Click anywhere to show content
-            document.addEventListener('click', () => {
-                showContent();
-            });
-        }
-        
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-        
-        function onPlayerStateChange(event) {
-            // When video starts playing
-            if (event.data === YT.PlayerState.PLAYING) {
-                setTimeout(showContent, 3000); // Show content after 3 seconds of playback
+            // Create hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.width = (Math.random() * 20 + 10) + 'px';
+                heart.style.height = heart.style.width;
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(heart);
+                
+                // Make some hearts burst like balloons after delay
+                if (i % 3 === 0) {
+                    setTimeout(() => {
+                        heart.style.animation = 'none';
+                        heart.style.transition = 'all 0.5s ease';
+                        heart.style.transform = 'scale(1.5) rotate(45deg)';
+                        heart.style.opacity = '0';
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 500);
+                    }, Math.random() * 10000 + 5000);
+                }
+            }
+            
+            // Create balloons
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.top = 100 + 'vh';
+                balloon.style.width = (Math.random() * 30 + 20) + 'px';
+                balloon.style.height = (Math.random() * 40 + 30) + 'px';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.appendChild(balloon);
+                
+                // Balloon burst effect
+                setTimeout(() => {
+                    balloon.style.animation = 'none';
+                    balloon.style.transition = 'all 0.3s ease';
+                    balloon.style.transform = 'scale(1.5)';
+                    balloon.style.opacity = '0';
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 300);
+                }, Math.random() * 15000 + 5000);
             }
         }
         
+        // Show content after video plays
         function showContent() {
-            // Fade out video
-            videoContainer.classList.add('fade-out');
+            const videoContainer = document.getElementById('video-container');
+            const content = document.getElementById('content');
             
-            // Show and fade in content
+            videoContainer.classList.add('fade-out');
             content.style.display = 'block';
+            
             setTimeout(() => {
                 content.classList.add('show');
+                createFloatingElements();
             }, 100);
             
-            // Remove video container after transition
             setTimeout(() => {
                 videoContainer.style.display = 'none';
             }, 1000);
         }
+        
+        // Initialize
+        window.onload = function() {
+            // Try YouTube API first
+            if (typeof YT !== 'undefined') {
+                new YT.Player('ytVideo', {
+                    events: {
+                        'onReady': (event) => event.target.playVideo(),
+                        'onStateChange': (event) => {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                setTimeout(showContent, 3000);
+                            }
+                        }
+                    }
+                });
+            } 
+            // Fallback methods
+            else {
+                // Click/touch to continue
+                document.addEventListener('click', showContent);
+                
+                // Timeout fallback
+                setTimeout(showContent, 5000);
+            }
+        };
         
         // Load YouTube API
         const tag = document.createElement('script');
