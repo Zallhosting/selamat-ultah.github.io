@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Love!</title>
     <style>
-        @import url('https://drive.google.com/file/d/1JwUGbDsMCTm0clrk6W3szojm6hTrzutR/view?usp=sharing');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
         
         body {
             margin: 0;
@@ -17,60 +17,13 @@
             min-height: 100vh;
         }
         
-        #content {
-            display: none;
+        .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 1;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        #content.show {
-            opacity: 1;
-        }
-        
-        #video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-            background: black;
-            transition: opacity 1s ease;
-        }
-        
-        #video-container.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        #ytVideo {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .main-photo {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 15px;
-            margin: 30px auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 5px solid white;
-            display: block;
-            transform: scale(0.95);
-            transition: transform 0.5s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .main-photo:hover {
-            transform: scale(1);
+            animation: fadeIn 2s ease forwards;
         }
         
         h1 {
@@ -80,8 +33,6 @@
             margin: 0 0 20px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
-            position: relative;
-            z-index: 2;
         }
         
         .message {
@@ -94,202 +45,198 @@
             z-index: 2;
         }
         
-        /* Heart animation */
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #d23669;
+            text-align: right;
+            margin-top: 30px;
+        }
+        
+        /* Fixed Heart Animation */
         .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
+            position: fixed;
+            width: 30px;
+            height: 30px;
             background-color: #ff6b81;
             transform: rotate(45deg);
-            animation: float 8s ease-in-out infinite;
-            opacity: 0.7;
+            animation: float 6s linear infinite;
             z-index: 1;
+            pointer-events: none;
         }
         
         .heart:before, .heart:after {
             content: '';
-            width: 20px;
-            height: 20px;
-            background-color: #ff6b81;
-            border-radius: 50%;
             position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: inherit;
+            border-radius: 50%;
         }
         
         .heart:before {
-            top: -10px;
+            top: -15px;
             left: 0;
         }
         
         .heart:after {
             top: 0;
-            left: -10px;
+            left: -15px;
         }
         
-        /* Balloon animation */
+        /* Balloon Animation */
         .balloon {
-            position: absolute;
-            width: 30px;
-            height: 40px;
+            position: fixed;
+            width: 40px;
+            height: 50px;
             background: #ff6b81;
             border-radius: 50%;
-            animation: floatBalloon 10s ease-in infinite;
+            animation: floatBalloon 15s linear infinite;
             z-index: 1;
+            pointer-events: none;
         }
         
         .balloon:before {
             content: '';
             position: absolute;
             width: 2px;
-            height: 30px;
-            background: #ccc;
-            bottom: -30px;
+            height: 60px;
+            background: rgba(255,255,255,0.5);
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(45deg); }
-            50% { transform: translateY(-50px) rotate(45deg); }
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
         }
         
         @keyframes floatBalloon {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-100px) translateX(20px); }
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
         }
         
         @media (max-width: 768px) {
             h1 { font-size: 3rem; }
+            .heart, .balloon {
+                width: 25px;
+                height: 25px;
+            }
+            .heart:before, .heart:after {
+                width: 25px;
+                height: 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Video takes full screen initially -->
-    <div id="video-container">
-        <iframe 
-            id="ytVideo"
-            src="https://www.youtube.com/embed/sDMgDl95a-M?autoplay=1&mute=0&controls=0&rel=0&enablejsapi=1" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    
-    <!-- Birthday content -->
-   <div class="message">
-            <p>Sayangnya aa 🥰🥰💙,</p>
+    <div class="container">
+        <h1>Happy Birthday!</h1>
+        <div class="message">
+            <p>Sayangku,</p>
             <p>Di hari spesialmu ini, aku ingin mengucapkan selamat ulang tahun untuk wanita paling cantik, kuat, dan mengagumkan yang pernah aku kenal.</p>
-            <p>Setiap hari bersama dede adalah hadiah terindah yang pernah aa terima. dede membuat hidupku lebih berwarna dengan cintamu, tawamu, dan segala keunikanmu.</p>
-            <p>Aku berjanji akan selalu ada untuk dede, dalam suka dan duka, dalam setiap langkah perjalanan hidup kita bersama.</p>
-            <p>Semoga tahun ini membawa lebih banyak kebahagiaan, kesuksesan, dan mimpi yang terwujud untuk dede. Aku mencintaimu lebih dari kata-kata bisa ungkapkan, btw semoga cepat tinggi yah mwehehehehehe #botol yakult🤣❤.</p>
+            <p>Setiap hari bersamamu adalah hadiah terindah yang pernah aku terima. Kamu membuat hidupku lebih berwarna dengan cintamu, tawamu, dan segala keunikanmu.</p>
+            <p>Aku berjanji akan selalu ada untukmu, dalam suka dan duka, dalam setiap langkah perjalanan hidup kita bersama.</p>
+            <p>Semoga tahun ini membawa lebih banyak kebahagiaan, kesuksesan, dan mimpi yang terwujud untukmu. Aku mencintaimu lebih dari kata-kata bisa ungkapkan.</p>
             <div class="signature">Dengan cinta,<br>Dia yang selalu mencintaimu</div>
         </div>
     </div>
-    
+
+    <audio id="birthdaySong" autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         // Create floating elements
-        function createFloatingElements() {
-            const colors = ['#ff6b81', '#ffb8b8', '#d23669', '#ff9a9e'];
+        function createElements() {
+            const colors = ['#ff6b81', '#ff8fab', '#d23669', '#ff477e'];
             
-            // Create hearts
+            // Create 50 hearts (more visible)
+            for (let i = 0; i < 50; i++) {
+                createHeart(colors);
+            }
+            
+            // Create 20 balloons
             for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = Math.random() * 100 + 'vh';
-                heart.style.width = (Math.random() * 20 + 10) + 'px';
-                heart.style.height = heart.style.width;
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heart.style.opacity = Math.random() * 0.5 + 0.3;
-                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.appendChild(heart);
-                
-                // Make some hearts burst like balloons after delay
-                if (i % 3 === 0) {
-                    setTimeout(() => {
-                        heart.style.animation = 'none';
-                        heart.style.transition = 'all 0.5s ease';
-                        heart.style.transform = 'scale(1.5) rotate(45deg)';
-                        heart.style.opacity = '0';
-                        setTimeout(() => {
-                            heart.remove();
-                        }, 500);
-                    }, Math.random() * 10000 + 5000);
-                }
+                createBalloon(colors);
             }
             
-            // Create balloons
-            for (let i = 0; i < 10; i++) {
-                const balloon = document.createElement('div');
-                balloon.className = 'balloon';
-                balloon.style.left = Math.random() * 100 + 'vw';
-                balloon.style.top = 100 + 'vh';
-                balloon.style.width = (Math.random() * 30 + 20) + 'px';
-                balloon.style.height = (Math.random() * 40 + 30) + 'px';
-                balloon.style.animationDelay = Math.random() * 5 + 's';
-                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.appendChild(balloon);
-                
-                // Balloon burst effect
-                setTimeout(() => {
-                    balloon.style.animation = 'none';
-                    balloon.style.transition = 'all 0.3s ease';
-                    balloon.style.transform = 'scale(1.5)';
-                    balloon.style.opacity = '0';
-                    setTimeout(() => {
-                        balloon.remove();
-                    }, 300);
-                }, Math.random() * 15000 + 5000);
-            }
+            // Keep creating new elements periodically
+            setInterval(() => {
+                if(Math.random() > 0.5) createHeart(colors);
+                else createBalloon(colors);
+            }, 800);
         }
         
-        // Show content after video plays
-        function showContent() {
-            const videoContainer = document.getElementById('video-container');
-            const content = document.getElementById('content');
+        function createHeart(colors) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.body.appendChild(heart);
             
-            videoContainer.classList.add('fade-out');
-            content.style.display = 'block';
-            
+            // Remove after animation completes
             setTimeout(() => {
-                content.classList.add('show');
-                createFloatingElements();
-            }, 100);
-            
-            setTimeout(() => {
-                videoContainer.style.display = 'none';
-            }, 1000);
+                heart.remove();
+            }, 6000);
         }
         
-        // Initialize
-        window.onload = function() {
-            // Try YouTube API first
-            if (typeof YT !== 'undefined') {
-                new YT.Player('ytVideo', {
-                    events: {
-                        'onReady': (event) => event.target.playVideo(),
-                        'onStateChange': (event) => {
-                            if (event.data === YT.PlayerState.PLAYING) {
-                                setTimeout(showContent, 3000);
-                            }
-                        }
-                    }
+        function createBalloon(colors) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.body.appendChild(balloon);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                balloon.remove();
+            }, 15000);
+        }
+        
+        // Audio control with better autoplay handling
+        function initAudio() {
+            const audio = document.getElementById('birthdaySong');
+            audio.volume = 0.3;
+            
+            // Try to play automatically
+            const playPromise = audio.play();
+            
+            // If blocked, enable on click
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    document.body.addEventListener('click', () => {
+                        audio.play();
+                    }, { once: true });
                 });
-            } 
-            // Fallback methods
-            else {
-                // Click/touch to continue
-                document.addEventListener('click', showContent);
-                
-                // Timeout fallback
-                setTimeout(showContent, 5000);
             }
-        };
+        }
         
-        // Load YouTube API
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        // Start everything
+        window.onload = function() {
+            createElements();
+            initAudio();
+        };
     </script>
 </body>
 </html>
